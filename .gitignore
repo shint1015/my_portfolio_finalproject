@@ -1,0 +1,40 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pytype/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Django
+*.log
+local_settings.py
+staticfiles/
+media/
+
+# SQLite / local DB
+*.sqlite3
+
+# Node
+node_modules/
+
+# Tailwind build output (generated)
+src/chatbot/interface/web/static/chatbot/tailwind.css
+
+# Environment files
+.env
+.env.*

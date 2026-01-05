@@ -1,0 +1,4 @@
+@import 'tailwindcss';
+
+/* Tailwind v4 scans files via @source directives (no tailwind.config.js). */
+@source "../../../../../**/*.{html,js,ts,py}";
