@@ -5,8 +5,8 @@ from rest_framework import status
 from chatbot.interface.api.serializers import ChatRequestSerializer
 from chatbot.application.use_cases.ask_question import AskQuestionUseCase
 from chatbot.application.policies import SimilarityPolicy
-from chatbot.infrastructure.django.repositories import InMemoryChunkRepository
-from chatbot.infrastructure.llm.openai_client import DummyLLMClient
+from chatbot.infrastructure.django.repositories import PgVectorChunkRepository
+from chatbot.infrastructure.llm.openai_client import OpenAILLMClient
 
 
 class ChatView(APIView):
@@ -15,8 +15,8 @@ class ChatView(APIView):
         ser.is_valid(raise_exception=True)
 
         usecase = AskQuestionUseCase(
-            repo=InMemoryChunkRepository(),
-            llm=DummyLLMClient(),
+            repo=PgVectorChunkRepository(),
+            llm=OpenAILLMClient(),
             policy=SimilarityPolicy(threshold=0.75),
         )
 

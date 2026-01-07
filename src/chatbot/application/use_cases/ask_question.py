@@ -16,7 +16,7 @@ class AskQuestionUseCase:
         chunks = list(self.repo.search(question, k=4))
         if self.policy.is_insufficient(chunks):
             return {
-                "answer": "I dont know based on my data.",
+                "answer": "I don’t know based on my data.",
                 "sources": [],
             }
         
