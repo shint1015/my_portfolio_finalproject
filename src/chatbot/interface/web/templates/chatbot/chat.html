@@ -18,7 +18,7 @@
             Ask something about
             <span class="font-semibold text-white">your documents</span>.<br />
             If it’s not in your data, it will say:
-            <span class="font-mono">I don’t know based on my data.</span>
+            <span class="font-mono">Sorry, I can’t find that in my data.</span>
         </div>
         {% endif %}
 
@@ -38,44 +38,157 @@
                 >
                     <div class="text-slate-100">{{ m.content|linebreaksbr }}</div>
 
-                    {% if m.sources %}
-                    <div class="mt-3 flex flex-wrap items-center gap-2 text-xs text-slate-300">
-                        <span class="opacity-80">Sources:</span>
-                        {% for s in m.sources %}
-                        <span
-                            class="rounded-full border border-slate-700 bg-slate-950 px-2 py-0.5 text-slate-200"
-                        >
-                            {{ s }}
-                        </span>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
                 </div>
             </div>
             {% endif %} {% endfor %}
         </div>
     </div>
 
-    <form method="post" class="flex gap-2">
+    <form id="chat-form" class="flex gap-2" data-recaptcha-key="{{ recaptcha_site_key }}">
         {% csrf_token %}
         <input
             name="message"
+            id="message-input"
             class="flex-1 rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/60"
             placeholder="Message…"
             autocomplete="off"
         />
         <button
+            id="send-button"
             class="rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm hover:bg-slate-900"
             type="submit"
         >
             Send
         </button>
     </form>
+    <div id="loading-indicator" class="text-xs text-slate-400" hidden>
+        Thinking…
+    </div>
 </main>
 
 {% endblock %} {% block scripts %}
+<script src="https://www.google.com/recaptcha/api.js?render={{ recaptcha_site_key }}"></script>
 <script>
-    const el = document.getElementById('messages');
-    el.scrollTop = el.scrollHeight;
+    const messagesEl = document.getElementById('messages');
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
+    const loadingIndicator = document.getElementById('loading-indicator');
+    const recaptchaKey = form.dataset.recaptchaKey;
+
+    const scrollToBottom = () => {
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+    };
+
+    const getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return '';
+    };
+
+    const createBubble = (role) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = role === 'user' ? 'flex justify-end' : 'flex justify-start';
+
+        const bubble = document.createElement('div');
+        bubble.className =
+            role === 'user'
+                ? 'max-w-[85%] rounded-2xl bg-blue-600/90 px-4 py-3 text-sm leading-relaxed shadow-sm whitespace-pre-line'
+                : 'max-w-[85%] rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-sm leading-relaxed shadow-sm whitespace-pre-line';
+
+        wrapper.appendChild(bubble);
+        return { wrapper, bubble };
+    };
+
+    const typewriter = (bubble, text, onDone) => {
+        let index = 0;
+        const interval = setInterval(() => {
+            bubble.textContent = text.slice(0, index);
+            index += 1;
+            scrollToBottom();
+            if (index > text.length) {
+                clearInterval(interval);
+                if (onDone) onDone();
+            }
+        }, 18);
+    };
+
+    const appendMessage = (role, text) => {
+        const { wrapper, bubble } = createBubble(role);
+        bubble.textContent = text;
+        messagesEl.appendChild(wrapper);
+        scrollToBottom();
+    };
+
+    const sendMessage = async (message) => {
+        if (!recaptchaKey) {
+            appendMessage('assistant', 'reCAPTCHA key is not configured.');
+            loadingIndicator.hidden = true;
+            sendButton.disabled = false;
+            sendButton.textContent = 'Send';
+            return;
+        }
+
+        sendButton.disabled = true;
+        loadingIndicator.hidden = false;
+        sendButton.textContent = 'Sending…';
+
+        const typing = createBubble('assistant');
+        typing.bubble.textContent = 'Typing…';
+        messagesEl.appendChild(typing.wrapper);
+        scrollToBottom();
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 20000);
+
+        try {
+            const token = await grecaptcha.execute(recaptchaKey, { action: 'chat' });
+            const response = await fetch('/api/chat/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+                body: JSON.stringify({
+                    query: message,
+                    recaptcha_token: token,
+                    recaptcha_action: 'chat',
+                }),
+                signal: controller.signal,
+            });
+
+            const data = await response.json();
+            if (!response.ok) {
+                appendMessage('assistant', data.detail || 'Something went wrong.');
+                return;
+            }
+
+            typing.bubble.textContent = '';
+            typewriter(typing.bubble, data.answer);
+        } catch (error) {
+            typing.bubble.textContent =
+                error.name === 'AbortError'
+                    ? 'Request timed out. Please try again.'
+                    : 'Something went wrong. Please try again.';
+        } finally {
+            clearTimeout(timeoutId);
+            sendButton.disabled = false;
+            sendButton.textContent = 'Send';
+            loadingIndicator.hidden = true;
+            scrollToBottom();
+        }
+    };
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const message = input.value.trim();
+        if (!message) return;
+        appendMessage('user', message);
+        input.value = '';
+        sendMessage(message);
+    });
+
+    scrollToBottom();
 </script>
 {% endblock %}
