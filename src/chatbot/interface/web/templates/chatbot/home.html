@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block body %}
+<header class="sticky top-0 z-20 border-b border-slate-800/70 bg-slate-950/80 backdrop-blur">
+    <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <a class="text-sm font-semibold tracking-wide text-slate-100" href="/">Portfolio - Shintaro Miyata</a>
+        <nav class="flex items-center gap-4 text-sm text-slate-300">
+            <a class="transition hover:text-white" href="/">Home</a>
+            <a class="transition hover:text-white" href="/chats">Chat</a>
+        </nav>
+    </div>
+</header>
+<main class="min-h-screen bg-slate-950 text-slate-100">
+  <!-- subtle background decoration -->
+  <div class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div class="absolute -top-24 left-1/2 h-105 w-105 -translate-x-1/2 rounded-full bg-amber-400/10 blur-3xl"></div>
+    <div class="absolute bottom-0 -right-30 h-130 w-130 rounded-full bg-sky-400/10 blur-3xl"></div>
+  </div>
+
+  <section class="relative mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-14 md:grid-cols-[1fr_1.05fr] md:py-20">
+    <!-- LEFT: Portrait card -->
+    <div class="relative">
+      <div class="absolute -inset-3 rounded-4xl bg-linear-to-br from-amber-400/20 via-slate-900 to-slate-950 blur-2xl"></div>
+
+      <div class="relative overflow-hidden rounded-[28px] border border-slate-800/70 bg-slate-900/50 shadow-2xl shadow-black/40">
+        <!-- image -->
+        <div class="aspect-4/5 sm:aspect-auto w-full sm:w-[85%] sm:m-auto m-0 p-3">
+          <img
+            src="{% static 'images/myface.png' %}"
+            alt="Portrait of Shintaro Miyata"
+            class="w-full object-cover"
+          />
+        </div>
+
+        <!-- quick stats / chips -->
+        <div class="border-t border-slate-800/70 bg-slate-950/30 p-4">
+          <div class="flex flex-wrap gap-2 text-xs text-slate-300">
+            <span class="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-3 py-1">
+              <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+              Available
+            </span>
+            <span class="inline-flex items-center rounded-full border border-slate-800 bg-slate-900/60 px-3 py-1">
+              Backend / Full-stack
+            </span>
+            <span class="inline-flex items-center rounded-full border border-slate-800 bg-slate-900/60 px-3 py-1">
+              Django · Go · TS
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Copy + CTA -->
+    <div class="relative flex flex-col justify-center">
+      <div class="space-y-6">
+        <!-- badge -->
+        <div class="inline-flex w-fit items-center gap-2 rounded-full border border-slate-800 bg-slate-900/60 px-3 py-1 text-xs text-slate-300">
+          <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+          Available for new opportunities
+        </div>
+
+        <!-- headline -->
+        <div class="space-y-3">
+          <h1 class="text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl">
+            Hi, I'm <span class="text-amber-300">Shintaro Miyata</span>.
+          </h1>
+          <p class="max-w-xl text-base leading-relaxed text-slate-300">
+            Software engineer focused on building scalable, high-performance systems with clean architecture and a great user experience.
+            Currently studying Web Development at Tamwood Career College.
+          </p>
+        </div>
+
+        <!-- content cards -->
+        <div class="grid gap-4">
+          <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-5">
+            <p class="text-sm leading-relaxed text-slate-300">
+              Since 2019, I’ve worked on modern web products—internal systems for a second-hand goods company, management platforms in the crypto industry,
+              and e-commerce troubleshooting & bug fixes.
+              <a href="#experience" class="font-medium text-amber-200 underline decoration-amber-200/40 underline-offset-4 hover:text-amber-100">
+                My experience
+              </a>
+              highlights the details.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-5">
+            <p class="text-sm leading-relaxed text-slate-300">
+              Outside of coding, I enjoy badminton, movies/anime, and long walks on sunny days.
+            </p>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a
+            class="inline-flex items-center justify-center rounded-full bg-amber-300 px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg shadow-amber-500/20 transition hover:bg-amber-200 active:scale-[0.99]"
+            href="{% url 'chat' %}"
+          >
+            Chat with me
+          </a>
+        </div>
+
+        <!-- statement -->
+        <div class="rounded-2xl border border-slate-800 bg-linear-to-b from-slate-900/60 to-slate-900/30 p-5">
+          <p class="text-sm leading-relaxed text-slate-300">
+            I build reliable, user-friendly web apps and care about performance, clarity, and clean architecture.
+            If you want to talk about collaboration or projects, feel free to jump into the chat.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
