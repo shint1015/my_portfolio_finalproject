@@ -638,6 +638,9 @@
   .text-slate-300 {
     color: var(--color-slate-300);
   }
+  .text-slate-400 {
+    color: var(--color-slate-400);
+  }
   .text-slate-900 {
     color: var(--color-slate-900);
   }
