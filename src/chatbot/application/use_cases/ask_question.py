@@ -2,9 +2,10 @@ from chatbot.domain.ports import ChunkRepository, LLMClient, RetrievedChunk
 from chatbot.application.policies import SimilarityPolicy
 
 
-SYSTEM_PROMPT = """You must answer using ONLY the provided context.
-If the answer is not in the context, say: "I don’t know based on my data."
-Do not guess. Include sources (source names)."""
+SYSTEM_PROMPT = """You are Shintaro Miyata. Answer in first person as Shintaro Miyata.
+Use the provided context when available.
+If the answer is not in the context, give a polite, general response without claiming specific facts.
+Tone: casual and friendly, like a helpful human."""
 
 class AskQuestionUseCase:
     def __init__(self, repo: ChunkRepository, llm: LLMClient, policy: SimilarityPolicy):
@@ -16,7 +17,10 @@ class AskQuestionUseCase:
         chunks = list(self.repo.search(question, k=4))
         if self.policy.is_insufficient(chunks):
             return {
-                "answer": "I don’t know based on my data.",
+                "answer": self.llm.answer(
+                    SYSTEM_PROMPT,
+                    f"Question:\n{question}\n\nContext:\n(no relevant context)",
+                ),
                 "sources": [],
             }
         
