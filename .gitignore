@@ -33,7 +33,6 @@ media/
 node_modules/
 
 # Tailwind build output (generated)
-src/chatbot/interface/web/static/chatbot/tailwind.css
 
 # Environment files
 .env
