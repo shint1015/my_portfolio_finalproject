@@ -29,7 +29,7 @@
         </div>
         {% endif %}
 
-        <div class="flex flex-col gap-3">
+        <div id="message-list" class="flex flex-col gap-4">
             {% for m in history %} {% if m.role == "user" %}
             <div class="flex justify-end">
                 <div
@@ -67,24 +67,46 @@
         />
         <button
             id="send-button"
-            class="rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm hover:bg-slate-900"
+            class="rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm hover:bg-slate-900 flex"
             type="submit"
         >
-            Send
+            <span
+                id="send-spinner"
+                class="mr-2 hidden h-5 w-5 items-center justify-center text-slate-300"
+                aria-hidden="true"
+            >
+                <svg class="h-5 w-5 animate-spin" viewBox="0 0 24 24">
+                    <circle
+                        class="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        stroke-width="4"
+                        fill="none"
+                    ></circle>
+                    <path
+                        class="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    ></path>
+                </svg>
+            </span>
+            <span id="send-label">Send</span>
         </button>
     </form>
-    <div id="loading-indicator" class="text-xs text-slate-400" hidden>
-        Thinking…
-    </div>
 </main>
 
 {% endblock %} {% block scripts %}
 <script src="https://www.google.com/recaptcha/api.js?render={{ recaptcha_site_key }}"></script>
 <script>
     const messagesEl = document.getElementById('messages');
+    const messageListEl = document.getElementById('message-list');
     const form = document.getElementById('chat-form');
     const input = document.getElementById('message-input');
     const sendButton = document.getElementById('send-button');
+    const sendSpinner = document.getElementById('send-spinner');
+    const sendLabel = document.getElementById('send-label');
     const loadingIndicator = document.getElementById('loading-indicator');
     const recaptchaKey = form.dataset.recaptchaKey;
 
@@ -101,7 +123,17 @@
 
     const createBubble = (role) => {
         const wrapper = document.createElement('div');
-        wrapper.className = role === 'user' ? 'flex justify-end' : 'flex justify-start';
+        wrapper.className =
+            role === 'user' ? 'flex justify-end' : 'flex items-start gap-3';
+
+        let avatar = null;
+        if (role !== 'user') {
+            avatar = document.createElement('img');
+            avatar.src = "{% static 'images/myface.png' %}";
+            avatar.alt = 'Shintaro Miyata';
+            avatar.className = 'h-8 w-8 rounded-full object-cover';
+            wrapper.appendChild(avatar);
+        }
 
         const bubble = document.createElement('div');
         bubble.className =
@@ -110,7 +142,7 @@
                 : 'max-w-[85%] rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-sm leading-relaxed shadow-sm whitespace-pre-line';
 
         wrapper.appendChild(bubble);
-        return { wrapper, bubble };
+        return { wrapper, bubble, avatar };
     };
 
     const typewriter = (bubble, text, onDone) => {
@@ -129,7 +161,7 @@
     const appendMessage = (role, text) => {
         const { wrapper, bubble } = createBubble(role);
         bubble.textContent = text;
-        messagesEl.appendChild(wrapper);
+        messageListEl.appendChild(wrapper);
         scrollToBottom();
     };
 
@@ -138,17 +170,22 @@
             appendMessage('assistant', 'reCAPTCHA key is not configured.');
             loadingIndicator.hidden = true;
             sendButton.disabled = false;
-            sendButton.textContent = 'Send';
+            sendLabel.textContent = 'Send';
             return;
         }
 
         sendButton.disabled = true;
+        sendSpinner.classList.remove('hidden');
+        sendLabel.textContent = 'Sending';
         loadingIndicator.hidden = false;
-        sendButton.textContent = 'Sending…';
+        const dots = setInterval(() => {
+            sendLabel.textContent =
+                sendLabel.textContent.length < 10 ? `${sendLabel.textContent}.` : 'Sending...';
+        }, 400);
 
         const typing = createBubble('assistant');
         typing.bubble.textContent = 'Typing…';
-        messagesEl.appendChild(typing.wrapper);
+        messageListEl.appendChild(typing.wrapper);
         scrollToBottom();
 
         const controller = new AbortController();
@@ -185,8 +222,10 @@
                     : 'Something went wrong. Please try again.';
         } finally {
             clearTimeout(timeoutId);
+            clearInterval(dots);
             sendButton.disabled = false;
-            sendButton.textContent = 'Send';
+            sendSpinner.classList.add('hidden');
+            sendLabel.textContent = 'Send';
             loadingIndicator.hidden = true;
             scrollToBottom();
         }
