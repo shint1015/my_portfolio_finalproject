@@ -9,7 +9,6 @@ class OpenAILLMClient:
     def answer(self, system: str, user: str) -> str:
         r = client.chat.completions.create(
             model=self.model,
-            temperature=0,
             messages=[
                 {"role": "system", "content": system},
                 {"role": "user", "content": user},
