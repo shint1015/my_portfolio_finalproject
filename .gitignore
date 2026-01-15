@@ -32,7 +32,6 @@ media/
 # Node
 node_modules/
 
-# Tailwind build output (generated)
 
 # Environment files
 .env
