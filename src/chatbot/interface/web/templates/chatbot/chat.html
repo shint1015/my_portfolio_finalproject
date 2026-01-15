@@ -33,7 +33,7 @@
             {% for m in history %} {% if m.role == "user" %}
             <div class="flex justify-end">
                 <div
-                    class="max-w-[85%] rounded-2xl bg-blue-600/90 px-4 py-3 text-sm leading-relaxed shadow-sm whitespace-pre-line break-words"
+                    class="max-w-[85%] rounded-2xl bg-blue-600/90 px-4 py-3 text-sm leading-relaxed shadow-sm wrap-break-word"
                 >
                     {{ m.content|linebreaksbr }}
                 </div>
@@ -46,7 +46,7 @@
                     class="h-8 w-8 rounded-full object-cover"
                 />
                 <div
-                    class="max-w-[85%] rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-sm leading-relaxed shadow-sm whitespace-pre-line break-words"
+                    class="max-w-[85%] rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-sm leading-relaxed shadow-sm wrap-break-word"
                 >
                     <div class="text-slate-100">{{ m.content|linebreaksbr }}</div>
 
@@ -163,8 +163,8 @@
         const bubble = document.createElement('div');
         bubble.className =
             role === 'user'
-                ? 'max-w-[85%] rounded-2xl bg-blue-600/90 px-4 py-3 text-sm leading-relaxed shadow-sm whitespace-pre-line'
-                : 'max-w-[85%] rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-sm leading-relaxed shadow-sm whitespace-pre-line';
+                ? 'max-w-[85%] rounded-2xl bg-blue-600/90 px-4 py-3 text-sm leading-relaxed shadow-sm'
+                : 'max-w-[85%] rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-sm leading-relaxed shadow-sm';
 
         wrapper.appendChild(bubble);
         return { wrapper, bubble, avatar };
