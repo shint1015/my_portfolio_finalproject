@@ -30,6 +30,7 @@ OPENAI_EMBED_DIM = int(os.environ.get("OPENAI_EMBED_DIM", "1536"))
 RECAPTCHA_SITE_KEY = os.environ.get("RECAPTCHA_SITE_KEY", "")
 RECAPTCHA_SECRET_KEY = os.environ.get("RECAPTCHA_SECRET_KEY", "")
 RECAPTCHA_MIN_SCORE = float(os.environ.get("RECAPTCHA_MIN_SCORE", "0.5"))
+RESUME_URL = os.environ.get("RESUME_URL", "")
 
 # Application definition
 

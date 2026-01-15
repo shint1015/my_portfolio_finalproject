@@ -20,7 +20,11 @@ def chat_view(request):
     return render(
         request,
         "chatbot/chat.html",
-        {"history": history, "recaptcha_site_key": settings.RECAPTCHA_SITE_KEY},
+        {
+            "history": history,
+            "recaptcha_site_key": settings.RECAPTCHA_SITE_KEY,
+            "resume_url": settings.RESUME_URL,
+        },
     )
 
 
