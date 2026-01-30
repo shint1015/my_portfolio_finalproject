@@ -6,9 +6,64 @@
         <title>{% block title %}Portfolio{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="{% static 'chatbot/tailwind.css' %}?v=1" />
+        <link rel="stylesheet" href="{% static 'footer.css' %}" />
         {% block head %}{% endblock %}
     </head>
     <body class="bg-slate-950 text-slate-100">
-        {% block body %}{% endblock %} {% block scripts %}{% endblock %}
+        {% block header %}
+        <header class="sticky top-0 z-20 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur">
+            <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+                <a class="text-sm font-semibold tracking-wide text-slate-100" href="/">Portfolio - Shintaro Miyata</a>
+                <nav class="flex items-center gap-4 text-sm text-slate-300">
+                    <a class="transition hover:text-white" href="/">Home</a>
+                    <a class="transition hover:text-white" href="/introduction">Introduction</a>
+                    <a class="transition hover:text-white" href="/chats">Chat</a>
+                    {% block header_nav_extra %}{% endblock %}
+                </nav>
+            </div>
+        </header>
+        {% endblock %}
+
+        {% block body %}{% endblock %}
+
+        {% block footer %}
+        <footer>
+            <nav>
+                <ul>
+                    <li><a class="transition hover:text-white" href="/">Home</a></li>
+                    <li><a class="transition hover:text-white" href="/introduction">Introduction</a></li>
+                    <li><a class="transition hover:text-white" href="/chats">Chat</a></li>
+                </ul>
+            </nav>
+            <div class ="separator">
+                <span></span>
+            </div>
+            <div class="footer-bottom">
+                <div class="social">
+                    {% if resume_url %}
+                    <a href="{{ resume_url }}" target="_blank" rel="noopener noreferrer" aria-label="Download Resume">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4.01 4a1 1 0 0 1-1.38 0l-4.01-4a1 1 0 1 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zm-7 14a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/>
+                        </svg>
+                    </a>
+                    {% endif %}
+                    <a href="https://github.com/shint1015" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <svg aria-hidden="true" viewBox="0 0 16 16" width="24" height="24" fill="currentColor">
+                            <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38l-.01-1.33c-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.58.82-2.14-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.63-.17 1.31-.27 2-.27s1.37.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.14 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/shintaro-miyata-97b452304/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.225.792 24 1.771 24h20.454C23.2 24 24 23.225 24 22.271V1.729C24 .774 23.2 0 22.225 0zM7.003 20.452H3.68V9h3.323v11.452zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM20.447 20.452h-3.554v-5.569c0-1.328-.025-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.94v5.666H9.591V9h3.314v1.561h.049c.476-.9 1.637-1.852 3.37-1.852 3.604 0 4.27 2.372 4.27 5.455v6.288z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p class="w-full">&copy; 2025 My Portfolio</p>
+            </div>
+        </footer>
+        {% endblock %}
+
+        <script src="{% static 'chatbot/app.js' %}" defer></script>
+        {% block scripts %}{% endblock %}
     </body>
 </html>

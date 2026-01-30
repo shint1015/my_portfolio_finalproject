@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Portfolio - Shintaro Miyata{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'common.css' %}">
+<link rel="stylesheet" href="{% static 'pc.css' %}">
+<link rel="stylesheet" href="{% static 'tablet.css' %}">
+<link rel="stylesheet" href="{% static 'mobile.css' %}">
+{% endblock %}
+{% block body %}
+<main>
+    <!-- located left side -->
+    <div id="sidebar-area" class="pc-only">
+        <h1>Shintaro Miyata</h1>
+        <p>Web Developer / Software Engineer</p>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skill">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#Portfolio">Portfolio</a></li>
+
+            </ul>
+        </nav>
+        <div class="social" style="display:flex; gap:12px;">
+            <a href="https://github.com/shint1015" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <svg aria-hidden="true" viewBox="0 0 16 16" width="24" height="24" fill="currentColor">
+                    <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38l-.01-1.33c-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.58.82-2.14-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.63-.17 1.31-.27 2-.27s1.37.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.14 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/shintaro-miyata-97b452304/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path d="M22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.225.792 24 1.771 24h20.454C23.2 24 24 23.225 24 22.271V1.729C24 .774 23.2 0 22.225 0zM7.003 20.452H3.68V9h3.323v11.452zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM20.447 20.452h-3.554v-5.569c0-1.328-.025-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.94v5.666H9.591V9h3.314v1.561h.049c.476-.9 1.637-1.852 3.37-1.852 3.604 0 4.27 2.372 4.27 5.455v6.288z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+    <!-- located right side -->
+    <div id="main-area">
+        <section class="mobile-only hero-section">
+            <div class="myface-container">
+                <img
+                    src="{% static 'images/myface.png' %}"
+                    alt="Portrait of Shintaro Miyata"
+                />
+            </div>
+            <h2>Shintaro Miyata</h2>
+            <p>Web Developer / Software Engineer</p>
+        </section>
+
+        <section class="section-area" id="about">
+            <h2>About Me</h2>
+            <div id="about-content">
+                <div class="myface-container pc-only">
+                    <img
+                        src="{% static 'images/myface.png' %}"
+                        alt="Portrait of Shintaro Miyata"
+                    />
+                </div>
+                <p class="p-overflow">
+                    Hi! My name is <strong>Shintaro Miyata</strong>. I am a software engineer with a passion for building scalable, high-performance systems that deliver seamless user experiences. This website is a space for me to showcase my work, experiments, and perspectives in web development.
+                    Currently, I am studying in a Web Developer course at Tamwood Career College.
+                    <br><br>
+                    Since 2019, I have been working on various projects leveraging modern web technologies to create intuitive and efficient user interfaces. My goal is to continuously learn and improve my skills while contributing to meaningful projects.
+                    <a href="#experience">My experience</a> includes developing internal systems for a second-hand goods company, building management platforms for clients in the cryptocurrency industry, and troubleshooting and fixing bugs in e-commerce platforms.
+                </p>
+                <p class="p-clear-both">
+                    <br>
+                    In my spare time, I enjoy playing badminton, watching movies and anime, and going for walks on sunny days.
+                </p>
+                <a class="read-btn" href="{% url 'chat' %}">Chat with me!</a>
+            </div>
+        </section>
+
+        <section class="section-area" id="skill">
+            <h2>Skills</h2>
+            <div class="skill-lists">
+                <h3>Backend</h3>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-name">PHP</div>
+                        <span class="pc-only skill-advance">Advanced</span>
+                        <div class="mobile-only bar">
+                            <div class="lv8 barline"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Laravel</div>
+                        <span class="pc-only skill-advance">Advanced</span>
+                        <div class="mobile-only bar">
+                            <div class="lv8 barline"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Go</div>
+                        <span class="pc-only skill-intermediate">Intermediate</span>
+                        <div class="mobile-only bar">
+                            <div class="lv6 barline"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Echo</div>
+                        <span class="pc-only skill-intermediate">Intermediate</span>
+                        <div class="mobile-only bar">
+                            <div class="lv6 barline"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Python</div>
+                        <span class="pc-only skill-intermediate">Intermediate</span>
+                        <div class="mobile-only bar">
+                            <div class="lv5 barline"></div>
+                        </div>
+                    </div>
+                </div>
+                <h3>Frontend</h3>
+                <div id="frontend-skillset" class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-name">JavaScript</div>
+                        <span class="pc-only skill-advance">Advanced</span>
+                        <div class="mobile-only bar">
+                            <div class="lv8 barline"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">TypeScript</div>
+                        <span class="pc-only skill-advance">Advanced</span>
+                        <div class="mobile-only bar">
+                            <div class="lv8 barline"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">HTML&CSS</div>
+                        <span class="pc-only skill-advance">Advanced</span>
+                        <div class="mobile-only bar">
+                            <div class="lv8 barline"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Node.js</div>
+                        <span class="pc-only skill-advance">Advanced</span>
+                        <div class="mobile-only bar">
+                            <div class="lv8 barline"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">React</div>
+                        <span class="pc-only skill-intermediate">Intermediate</span>
+                        <div class="mobile-only bar">
+                            <div class="lv6 barline"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Vue.js</div>
+                        <span class="pc-only skill-intermediate">Intermediate</span>
+                        <div class="mobile-only bar">
+                            <div class="lv5 barline"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Next.js</div>
+                        <span class="pc-only skill-intermediate">Intermediate</span>
+                        <div class="mobile-only bar">
+                            <div class="lv6 barline"></div>
+                        </div>
+                    </div>
+                </div>
+                <h3>Database</h3>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-name">MySQL</div>
+                        <span class="pc-only skill-advance">Advanced</span>
+                        <div class="mobile-only bar">
+                            <div class="lv7 barline"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Other</h3>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-name">Git</div>
+                        <span class="pc-only skill-advance">Advanced</span>
+                        <div class="mobile-only bar">
+                            <div class="lv8 barline"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Docker</div>
+                        <span class="pc-only skill-intermediate">Intermediate</span>
+                        <div class="mobile-only bar">
+                            <div class="lv7 barline"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-area" id="experience">
+            <div class="work-experience">
+                <h2>Work Experience</h2>
+                <ul>
+                    <li>
+                        <div class="work-date">PRESENT</div>
+                        <div class="work-description">
+                            <h3>Student<span class="pc-only">・</span> <br class="mobile-only"/>Tamwood Career College</h3>
+                            <p>Currently studying web development at Tamwood Career College.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="work-date">MAY - AUG 2025</div>
+                        <div class="work-description">
+                            <h3>Web Developer<span class="pc-only">・</span> <br class="mobile-only"/>Web App Development Company</h3>
+                            <p>UI development, API creation, migration file creation, and test creation and execution for a new page in a management application.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="work-date">OCT 2023 - 2024</div>
+                        <div class="work-description">
+                            <h3>Software Engineer<span class="pc-only">・</span> <br class="mobile-only"/>Web App Development Company</h3>
+                            <p>Maintenance and operation of cash register smartphone apps</p>
+                            <p>Development of new features such as integration with payment terminals for smartphone apps at cash registers</p>
+                            <p></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="work-date">APR 2022 - SEPT 2023</div>
+                        <div class="work-description">
+                            <h3>Software Engineer<span class="pc-only">・</span> <br class="mobile-only"/>CryptoCurrency related Company</h3>
+                            <p>Development of customer management screen for new service</p>
+                            <p>Development of desktop app for crypto currency trading</p>
+                            <p>Creation of SDK for crypto currency trading</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="work-date">AUG 2019 - MAR 2022</div>
+                        <div class="work-description">
+                            <h3>Junior Developer<span class="pc-only">・</span> <br class="mobile-only"/>Secondhand Industry Company</h3>
+                            <p>Internal management system maintenance and operation</p>
+                            <p>New development of internal management systems</p>
+                            <p>Backend development for operational websites</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section-area" id="portfolio">
+            <h2>Portfolio</h2>
+            <div class="portfolio-items">
+                <a class="portfolio-card" href="https://github.com/shint1015/basic-navigation-example">
+                    <h3>basic-navigation-example</h3>
+                    <p>A simple navigation example built with HTML and CSS.</p>
+                </a>
+                <a class="portfolio-card" href="https://github.com/shint1015/css-positioning-examples">
+                    <h3>css-positioning-examples</h3>
+                    <p>A collection of CSS positioning examples.</p>
+                </a>
+                <a class="portfolio-card" href="https://github.com/shint1015/basic-html-css-example">
+                    <h3>basic-html-css-example</h3>
+                    <p>A basic example of HTML and CSS structure.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}

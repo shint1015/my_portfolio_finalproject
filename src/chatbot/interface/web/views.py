@@ -33,6 +33,11 @@ def home_view(request):
     return render(request, "chatbot/home.html")
 
 
+@require_http_methods(["GET"])
+def introduction_view(request):
+    return render(request, "chatbot/index.html")
+
+
 @require_http_methods(["GET", "POST"])
 def chat_reset_view(request):
     request.session.pop(SESSION_HISTORY_KEY, None)

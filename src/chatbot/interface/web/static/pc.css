@@ -1,0 +1,122 @@
+@media screen and (min-width: 768px) {
+    * {
+        font-size: 16px;
+    }
+    
+    .mobile-only.mobile-only.mobile-only {
+        display: none;
+    }
+
+    header nav.pages {
+        display: flex;
+    }
+    /* sidebar style */
+    #sidebar-area, #main-area {
+        display: inline-block;
+        vertical-align: top;
+        padding: 20px;
+        font-size: 14px;
+    }
+
+    #sidebar-area {
+        width: 40%;
+        position: sticky;
+        top: 50px;
+        float: left;
+    }
+
+    #sidebar-area nav ul li {
+        margin-bottom: 1.5rem;
+        font-size: 16px;
+    }
+
+    #sidebar-area p {
+        padding: 1rem 0;
+        opacity: 0.9;
+    }
+
+    /* main area style */
+    #main-area {
+        width: 60%;
+        margin-top: 50px;
+    }
+
+
+    /* about content style */
+    .myface-container img {
+        float: left;
+        margin-right: 2rem;
+    }
+
+    #about-content p strong {
+        color: #fff;
+    }
+
+    .read-btn {
+        background-image: radial-gradient(circle, #af00ff, #a000ff, #8f00ff, #7c00ff, #6600ff);
+        float: right;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
+        transition-duration: .4s;
+    }
+    .read-btn:hover {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+
+    .section-area {
+        padding: 1rem 0 2rem;
+    }
+    .section-area:first-child{
+        padding-bottom: 4rem;
+    }
+    .skill-lists h3 {
+        margin: 0.5rem 0;
+    }
+
+    .skill-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        column-gap: 0.25rem;
+        row-gap: 0.5rem;
+    }
+    .skill-list .skill-item {
+        font-size: 0.7rem;
+        width: 24%;
+        display: flex;
+        flex-wrap: wrap;
+        background: linear-gradient(to right, #7F00FF,#E100FF);
+        padding: 0.5rem 0.75rem;
+        border-radius: 2rem;
+        color: #d0d0d0;
+        justify-content: space-between;
+        box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    }
+
+    .skill-list div span {
+        border-radius: 2rem;
+    }
+
+    #frontend-skillset p {
+        flex: 1;
+    }
+
+    .skill-list p:has(span.skill-advance) {
+        order: 1;
+    }
+
+    span.skill-advance {
+        color: #03ff62;
+    }
+    .skill-list p:has(span.skill-intermediate) {
+        order: 2;
+    }
+
+    span.skill-intermediate {
+        color: #fff200fc;
+    }
+
+}

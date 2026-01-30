@@ -1,0 +1,19 @@
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    * {
+        font-size: 16px;
+    }
+    .mobile-only.mobile-only.mobile-only {
+        display: none;
+    }
+
+    header nav.pages {
+        display: flex;
+    }
+
+    .skill-list .skill-item {
+        width: 48%;
+    }
+    a.portfolio-card {
+        width: 98%;
+    }
+}

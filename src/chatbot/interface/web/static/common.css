@@ -1,0 +1,313 @@
+:root {
+    --primary-color: #1E1B2E;
+    --secondary-color: #050622;
+    --text-color: #E0E0E0;
+    --link-color: #fff;
+    --hover-color: rgb(161, 45, 197);
+    --active-color: rgb(101, 40, 253);
+    --special-link-color: rgb(0, 157, 255);
+    --gradient-color: linear-gradient(to right, #7F00FF,#E100FF);
+    --webkit-gradient-color: -webkit-linear-gradient(to right, #7F00FF,#E100FF);
+}
+
+* {
+    font-family: "Cascadia Code", monospace;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-size: 14px;
+}
+body {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+a {
+    color: var(--link-color);
+}
+h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+h3 {
+    margin: 0.5rem 0;
+    font-size: 1.4rem;
+}
+#experience h3, #portfolio h3 {
+    font-size: 1.15rem;
+}   
+
+/* header style */
+header {
+    padding: 0.5rem 1rem;
+    background-color: #050622;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.header-logo {
+    font-size: 2rem;
+}
+
+.header-logo > a {
+    font-size: 2rem;
+}
+
+header nav.pages {
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav.pages ul {
+    display: flex;
+    align-items: center;
+
+}
+
+header nav.pages ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+header nav ul li:last-child {
+    margin-right: 0;
+}
+
+#hamburger-menu {
+    display: none;
+}
+
+/* main area style Section 1 */
+.myface-container img {
+    width: 150px;
+}
+
+/* about content style */
+.myface-container img {
+    float: left;
+    margin-right: 2rem;
+}
+
+#about-content p strong {
+    color: #fff;
+}
+
+.p-overflow {
+    height: 150px;
+    overflow: scroll;
+    scrollbar-color: white white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.p-clear-both {
+    clear: both;
+}
+
+.read-btn {
+    background-image: radial-gradient(circle, #af00ff, #a000ff, #8f00ff, #7c00ff, #6600ff);
+    float: right;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    transition-duration: .4s;
+}
+.read-btn:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+.section-area {
+    padding: 1rem 0 2rem;
+}
+.section-area:first-child{
+    padding-bottom: 4rem;
+}
+.skill-lists h3 {
+    margin: 0.5rem 0;
+}
+
+.skill-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.tooltip {
+    visibility: hidden;
+}
+
+
+.work-experience ul li {
+    background: #3a3b6914;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.work-experience ul li:hover {
+    opacity: 0.8;
+}
+
+.work-date {
+    width: 30%;
+    margin-right: 2rem;
+}
+
+.work-description {
+    width: 85%;
+}
+
+.work-description h3 {
+    margin-bottom: 0.75rem;
+}
+
+.work-description p {
+    opacity: 0.6;
+}
+
+.portfolio-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+a.portfolio-card {
+    padding: 1rem;
+    border-left: 1px solid;
+    width: 47%;
+    margin: 0.5rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 0 5px 5px 0;
+}
+
+.portfolio-card h3 {
+    padding: 1rem 0;
+}
+
+.portfolio-card p {
+    font-size: 12px;
+    opacity: 0.5;
+}
+
+@keyframes lv1{ /*animate html skills*/
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 10%;
+    }
+}
+
+@keyframes lv2{ /*animate css skills*/
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 20%;
+    }
+}
+@keyframes lv3{ /*animate js skills*/
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 30%;
+    }
+}
+@keyframes lv4{ /*animate react skills*/
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 40%;
+    }
+}
+@keyframes lv5{ /*animate node skills*/
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 50%;
+    }
+}
+@keyframes lv6{ /*animate mysql skills*/
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 60%;
+    }
+}
+@keyframes lv7{ /*animate git skills*/
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 70%;
+    }
+}
+@keyframes lv8{ /*animate docker skills*/
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 80%;
+    }
+}
+@keyframes lv9{ /*animate docker skills*/
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 90%;
+    }
+}
+@keyframes lv10{ /*animate docker skills*/
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 100%;
+    }
+}
+ 
+@keyframes slideIn {
+  0% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+  }
+  40%,100% {
+    opacity: 1;
+  }
+}
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+  40%,100% {
+    opacity: 0;
+  }
+}
