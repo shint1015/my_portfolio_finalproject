@@ -25,7 +25,7 @@
             {% for m in history %} {% if m.role == "user" %}
             <div class="flex justify-end">
                 <div
-                    class="max-w-[85%] rounded-2xl bg-blue-600/90 px-4 py-3 text-sm leading-relaxed shadow-sm wrap-break-word"
+                    class="max-w-[85%] rounded-2xl bg-blue-600/90 px-4 py-3 text-sm leading-relaxed shadow-sm break-all"
                 >
                     {{ m.content|linebreaksbr }}
                 </div>
@@ -38,7 +38,7 @@
                     class="h-8 w-8 rounded-full object-cover"
                 />
                 <div
-                    class="max-w-[85%] rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-sm leading-relaxed shadow-sm wrap-break-word"
+                    class="max-w-[85%] rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-sm leading-relaxed shadow-sm break-all"
                 >
                     <div class="text-slate-100">{{ m.content|linebreaksbr }}</div>
 
@@ -192,7 +192,7 @@
             .replace(/'/g, '&#39;');
 
     const linkify = (text) => {
-        const escaped = escapeHtml(text);
+        const escaped = escapeHtml(text).replace(/\n/g, '<br>');
         const urlRegex = /(https?:\/\/[^\s<]+)/g;
         return escaped.replace(
             urlRegex,
